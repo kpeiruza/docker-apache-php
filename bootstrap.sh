@@ -5,7 +5,7 @@ mkdir /download
 cd /download
 if [ -n "$SRCURL" ]
 then
-	rm -r /var/www/html
+	rm -r /var/www/html/*
 	curl -L -k "$SRCURL" > file.tmp
 	if [ $(file  file.tmp | grep -c "gzip compressed data") -ne 0 ]
 	then
@@ -20,9 +20,10 @@ fi
 
 if [ $(find . -maxdepth 1 -type f  | wc -l) -eq 0 ]
 then
-	mv $(find . -mindepth 1 -maxdepth 1 -type d) /var/www/html
+	
+	mv $(find . -mindepth 1 -maxdepth 1 -type d)/* /var/www/html
+	mv $(find . -mindepth 1 -maxdepth 1 -type d)/.* /var/www/html
 else
-	mkdir /var/www/html
 	mv * .[a-z]* /var/www/html
 fi
 chown -R www-data: /var/www/html
