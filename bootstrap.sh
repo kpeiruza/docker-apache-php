@@ -25,5 +25,6 @@ else
 	mkdir /var/www/html
 	mv * .[a-z]* /var/www/html
 fi
+chown -R www-data: /var/www/html
 
 /usr/sbin/apachectl -D FOREGROUND
