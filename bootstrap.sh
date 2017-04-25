@@ -16,15 +16,15 @@ then
 		unzip file.zip
 		rm file.zip
 	fi
-fi
 
-if [ $(find . -maxdepth 1 -type f  | wc -l) -eq 0 ]
-then
-	
-	mv $(find . -mindepth 1 -maxdepth 1 -type d)/* /var/www/html
-	mv $(find . -mindepth 1 -maxdepth 1 -type d)/.* /var/www/html
-else
-	mv * .[a-z]* /var/www/html
+	if [ $(find . -maxdepth 1 -type f  | wc -l) -eq 0 ]
+	then
+		
+		mv $(find . -mindepth 1 -maxdepth 1 -type d)/* /var/www/html
+		mv $(find . -mindepth 1 -maxdepth 1 -type d)/.* /var/www/html
+	else
+		mv * .[a-z]* /var/www/html
+	fi
 fi
 chown -R www-data: /var/www/html
 
